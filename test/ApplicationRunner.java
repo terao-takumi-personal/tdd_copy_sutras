@@ -3,8 +3,8 @@ public class ApplicationRunner {
     public static final String SNIPER_ID = "sniper";
     public static final String SNIPER_PASSWORD = "sniper";
     public static final String XMPP_HOST_NAME = "localhost";
-    public static final String STATUS_JOINING = "STATUS_JOINING";
-    public static final String STATUS_LOST = "STATUS_LOST";
+    public static final String STATUS_JOINING = "Joining";
+    public static final String STATUS_LOST = "Lost";
 
     private AuctionSniperDriver driver;
 

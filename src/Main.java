@@ -2,7 +2,7 @@ import javax.swing.*;
 
 class Main {
     public static final String MAIN_WINDOW_NAME = "Auction Sniper Main";
-    public static final String SNIPER_STATUS_NAME = "sniper status";
+
     private MainWindow ui;
 
     public Main() throws Exception {
