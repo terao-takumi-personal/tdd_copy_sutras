@@ -9,3 +9,11 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+
+# Build
+out
+build
+bin
+
+# Java
+*.class
