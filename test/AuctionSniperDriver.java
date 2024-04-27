@@ -1,3 +1,4 @@
+import auctionsniper.ui.MainWindow;
 import com.objogate.wl.swing.driver.JFrameDriver; // railsで言うcapybaraみたいなもんか
 import com.objogate.wl.swing.AWTEventQueueProber;
 import com.objogate.wl.swing.driver.JLabelDriver;
