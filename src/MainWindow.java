@@ -3,13 +3,14 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 
 public class MainWindow extends JFrame {
+    public static final String MAIN_WINDOW_NAME = "Auction Sniper Main";
     public static final String STATUS_JOINING = "Joining";
     private final JLabel sniperStatus = createLabel(STATUS_JOINING);
     public static final String SNIPER_STATUS_NAME = "sniper status";
 
     public MainWindow() {
         super("Auction Sniper");
-        setName(Main.MAIN_WINDOW_NAME);
+        setName(MAIN_WINDOW_NAME);
         add(sniperStatus);
         pack();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

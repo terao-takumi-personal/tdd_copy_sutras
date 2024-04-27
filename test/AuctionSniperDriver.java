@@ -11,7 +11,7 @@ public class AuctionSniperDriver extends JFrameDriver {
         super(
                 new GesturePerformer(),
                 JFrameDriver.topLevelFrame(
-                        named(Main.MAIN_WINDOW_NAME),
+                        named(MainWindow.MAIN_WINDOW_NAME),
                         showingOnScreen()
                 ),
                 new AWTEventQueueProber(timeoutMillis, 100)
