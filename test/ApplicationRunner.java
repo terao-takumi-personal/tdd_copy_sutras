@@ -5,6 +5,7 @@ public class ApplicationRunner {
     public static final String XMPP_HOST_NAME = "localhost";
     public static final String STATUS_JOINING = "Joining";
     public static final String STATUS_LOST = "Lost";
+    public static final String SNIPER_XMPP_ID = "sniper@localhost/Auction";
 
     private AuctionSniperDriver driver;
 
