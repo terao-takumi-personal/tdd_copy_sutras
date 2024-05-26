@@ -6,7 +6,7 @@ import com.objogate.wl.swing.gesture.GesturePerformer;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 
-// アプリケーションのGUI操作を制御するクラス
+// アプリケーションのGUI操作を制御し、GUIの表示アサートを行うクラス
 public class AuctionSniperDriver extends JFrameDriver {
     public AuctionSniperDriver(int timeoutMillis) {
         super(

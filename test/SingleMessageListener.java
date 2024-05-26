@@ -10,6 +10,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 
+// 受け取ったメッセージを1つだけ保存し、そのメッセージの内容をアサートするクラス
 public class SingleMessageListener implements MessageListener {
     private final ArrayBlockingQueue<Message> messages = new ArrayBlockingQueue<Message>(1);
 

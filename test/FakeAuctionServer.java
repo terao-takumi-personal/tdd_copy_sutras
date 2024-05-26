@@ -16,17 +16,26 @@ public class FakeAuctionServer {
 
 
     public FakeAuctionServer(String itemId) {
-        this.itemId = itemId;
-        this.connection = new XMPPConnection(XMPP_HOSTNAME);
+        this.itemId = itemId; // オークションの出品者(のような)ユーザーとしてログインさせるために使う
+        this.connection = new XMPPConnection(XMPP_HOSTNAME); // Smack(メッセンジャーライブラリ)のクライアントクラス
     }
 
     public void startSellingItem() throws XMPPException {
+        // 接続開始
         connection.connect();
+        // ログインする。ログインにはJIDとパスワードを利用する
+        // JIDは「auction-item-12345」のようなIDとしている。
         connection.login(format(ITEM_ID_AS_LOGIN, itemId), AUCTION_PASSWORD, AUCTION_RESOURCE);
+        // ChatListenerを登録している
         connection.getChatManager().addChatListener(
+                // 匿名内部クラス。一度しか使わないクラスなのでここで宣言している。
+                // ChatMessageListenerインターフェースの実装を行っている。
                 new ChatManagerListener() {
                     public void chatCreated(Chat chat, boolean createdLocally) {
+                        // 新しく作成されたチャットセッションを自身が参照できるようにする
                         currentChat = chat;
+                        // 新しくチャットを受け取ると、自作のmessageListenerが呼び出されるようにしている
+                        // 内部でメッセージの内容を格納したあと、nullでないことをアサートする
                         chat.addMessageListener(messageListener);
                     }
                 }
