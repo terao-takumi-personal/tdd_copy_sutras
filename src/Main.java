@@ -6,6 +6,8 @@ import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.packet.Message;
 
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 class Main {
     @SuppressWarnings("unnsed") private Chat notToBeGCd;
@@ -16,6 +18,8 @@ class Main {
     public static final String AUCTION_RESOURCE = "Auction";
     public static final String ITEM_ID_AS_LOGIN = "auction-%s";
     public static final String AUCTION_ID_FORMAT = ITEM_ID_AS_LOGIN + "@%s/" + AUCTION_RESOURCE;
+    public static final String JOIN_COMMAND_FORMAT = "SOLVersion: 1.1; Command: JOIN";
+    public static final String BID_COMMAND_FORMAT = "SOLVersion: 1.1; Command: BID Price: %d";
 
     private MainWindow ui;
 
@@ -32,6 +36,7 @@ class Main {
     }
 
     private void joinAuction(XMPPConnection connection, String itemId) throws XMPPException {
+        disconnectWhenUICloses(connection);
         final Chat chat = connection.getChatManager().createChat(
                 auctionId(itemId, connection),
                 new MessageListener() {
@@ -46,14 +51,14 @@ class Main {
         );
 
         this.notToBeGCd = chat;
-        chat.sendMessage(new Message());
+        chat.sendMessage(JOIN_COMMAND_FORMAT);
     }
 
     public static XMPPConnection
     connect(String hostname, String username, String password) throws XMPPException {
         XMPPConnection connection = new XMPPConnection(hostname);
         connection.connect();
-        connection.login(username, password);
+        connection.login(username, password, AUCTION_RESOURCE);
 
         return connection;
     }
@@ -67,6 +72,15 @@ class Main {
             @Override
             public void run() {
                 ui = new MainWindow();
+            }
+        });
+    }
+
+    private void disconnectWhenUICloses(XMPPConnection connection) {
+        ui.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                connection.disconnect();
             }
         });
     }
